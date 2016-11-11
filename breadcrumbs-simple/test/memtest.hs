@@ -11,28 +11,29 @@ import Data.Foldable
 import System.Environment
 import System.Exit
 import System.IO.Error
-import System.IO.Unsafe
 import System.Process
 
 import qualified Data.Breadcrumbs as B
 import qualified Data.Breadcrumbs.Internal as BI
 import qualified Data.Breadcrumbs.List as L
 import qualified Data.Breadcrumbs.DropList as D
+import qualified Data.Breadcrumbs.Deque as Q
+import qualified Data.Breadcrumbs.Seq as S
+import Data.Breadcrumbs.Test
 
-memtest :: Monad m => (Int -> as) -> (Int -> as -> as) -> (as -> int) -> m int
-memtest empty push len =
-  loop iterate (empty size)
-  where
-    size = 10
-    iterate = 100000
-    loop 0 x = return (len x)
-    loop n x = x `seq` loop (n - 1) (push n x)
+size = 10
+iters = 100000
 
-tests :: [(String, Bool, IO Int)]
+memtest :: (Int -> as) -> (Int -> as -> as) -> (as -> int) -> int
+memtest = appendStuff size iters
+
+tests :: [(String, Bool, Int)]
 tests =
-  [ ("TreeBuffer", True, memtest B.empty B.push b_len)
+  [ ("Unit", True, memtest (\_ -> ()) (const id) (const 0))
+  , ("TreeBuffer", True, memtest B.empty B.push b_len)
   , ("DropList", True, memtest D.empty D.push D.len)
-  , ("Unit", True, memtest (\_ -> ()) (const id) (const 0))
+  , ("Deque", True, memtest Q.empty Q.push Q.len)
+  , ("Seq", True, memtest S.empty S.push S.len)
   , ("List", False, memtest L.empty L.push L.len)
   ]
 
@@ -60,7 +61,7 @@ main = do
             | otherwise ->
                 putStrLn $ "  OK FAILURE: " ++ show code
     testName : _
-      | [(_, _, go)] <- findName -> go >>= print
+      | [(_, _, v)] <- findName -> print v
       where
         findName = filter (\(name,_,_) -> name == testName) tests
     args -> die $ "invalid arguments: " ++ show (unwords args)

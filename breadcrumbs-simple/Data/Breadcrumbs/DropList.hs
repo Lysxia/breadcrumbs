@@ -2,7 +2,11 @@ module Data.Breadcrumbs.DropList where
 
 data Buffer a = Buffer !Int ![a]
 
-empty n = Buffer (n + 1) []
+empty :: Int -> Buffer a
+push :: a -> Buffer a -> Buffer a
+bufferToList :: Buffer a -> [a]
+
+empty n = Buffer (n - 1) []
 
 push a (Buffer n as) = go as' (Buffer n (a : as'))
   where
