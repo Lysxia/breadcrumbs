@@ -14,6 +14,7 @@ library
     Data.Breadcrumbs.DropList
     Data.Breadcrumbs.Seq
     Data.Breadcrumbs.Deque
+    Data.Breadcrumbs.Flips
     Data.Breadcrumbs.Test
   build-depends:
     base >=4.9 && <4.10,
