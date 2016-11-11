@@ -10,4 +10,7 @@ push a (Buffer n as) = go as' (Buffer n (a : as'))
     go (_ : xs) y = go xs y
     go [] y = y
 
+bufferToList (Buffer _ as) = as
+
+len :: Buffer a -> Int
 len (Buffer _ as) = length as

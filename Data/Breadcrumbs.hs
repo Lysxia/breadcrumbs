@@ -35,8 +35,8 @@ push :: a -> Buffer a -> Buffer a
 push a (Buffer b) = Buffer . unsafePerformIO . I.push a $ b
 
 -- | View the sequence of elements.
-buffer :: Buffer a -> [a]
-buffer (Buffer b) = take (I.depthMax b) (I.bufferLazy b)
+bufferToList :: Buffer a -> [a]
+bufferToList (Buffer b) = take (I.depthMax b) (I.bufferLazy b)
 
 -- | Initialize a buffer from a list.
 --
@@ -71,7 +71,7 @@ instance Read a => Read (Buffer a) where
     where appPrec = 10
 
 instance Foldable Buffer where
-  toList = buffer
+  toList = bufferToList
   foldr f x = foldr f x . toList
 
 instance Functor Buffer where

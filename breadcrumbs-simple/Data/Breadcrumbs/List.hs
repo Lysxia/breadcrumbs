@@ -8,7 +8,6 @@ empty n = Buffer (n + 1) []
 push :: a -> Buffer a -> Buffer a
 push a (Buffer n as) = Buffer n (a : as)
 
-buffer :: Buffer a -> [a]
-buffer (Buffer n as) = take n as
+bufferToList (Buffer n as) = take n as
 
 len (Buffer _ n) = length n
