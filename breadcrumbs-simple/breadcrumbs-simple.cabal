@@ -32,3 +32,14 @@ test-suite memtest
     breadcrumbs-simple
   ghc-options: "-with-rtsopts=-M500k -A30k"
   default-language:    Haskell2010
+
+benchmark seqbench
+  main-is: seqbench.hs
+  hs-source-dirs: test
+  type: exitcode-stdio-1.0
+  build-depends:
+    base,
+    criterion,
+    breadcrumbs,
+    breadcrumbs-simple
+  default-language:    Haskell2010
