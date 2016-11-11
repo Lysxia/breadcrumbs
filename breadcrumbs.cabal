@@ -15,8 +15,15 @@ library
     Data.Breadcrumbs
     Data.Breadcrumbs.Internal
     Data.Breadcrumbs.IO
+    Data.Breadcrumbs.List
+    Data.Breadcrumbs.DropList
+    Data.Breadcrumbs.Seq
+    Data.Breadcrumbs.Deque
+    Data.Breadcrumbs.Flips
+    Data.Breadcrumbs.Test
   build-depends:
-    base >=4.9 && <4.10
+    base >=4.9 && <4.10,
+    containers
   default-language:    Haskell2010
 
 test-suite doctest
@@ -25,4 +32,25 @@ test-suite doctest
   build-depends:
     base,
     doctest
+  default-language:    Haskell2010
+
+test-suite memtest
+  main-is: memtest.hs
+  hs-source-dirs: test
+  type: exitcode-stdio-1.0
+  build-depends:
+    base,
+    process,
+    breadcrumbs
+  ghc-options: "-with-rtsopts=-M500k -A30k"
+  default-language:    Haskell2010
+
+benchmark seqbench
+  main-is: seqbench.hs
+  hs-source-dirs: test
+  type: exitcode-stdio-1.0
+  build-depends:
+    base,
+    criterion,
+    breadcrumbs
   default-language:    Haskell2010
