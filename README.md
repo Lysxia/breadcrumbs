@@ -62,3 +62,4 @@ Implementations
 
 - `Internal`: Internals of `Breadcrumbs`.
 
+- `Caterpillar`: A purely functional variant of tree buffers. Also much faster.

@@ -20,6 +20,7 @@ import qualified Data.Breadcrumbs.DropList as D
 import qualified Data.Breadcrumbs.Deque as Q
 import qualified Data.Breadcrumbs.Seq as S
 import qualified Data.Breadcrumbs.Flips as F
+import qualified Data.Breadcrumbs.Caterpillar as C
 import Data.Breadcrumbs.Test
 
 size = 10
@@ -36,6 +37,7 @@ tests =
   , ("Deque", True, memtest Q.empty Q.push Q.len)
   , ("Seq", True, memtest S.empty S.push S.len)
   , ("Flips", True, memtest F.empty F.push F.len)
+  , ("Caterpillar", True, memtest C.empty C.push C.len)
   , ("List", False, memtest L.empty L.push L.len)
   ]
 

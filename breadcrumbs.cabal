@@ -21,6 +21,7 @@ library
     Data.Breadcrumbs.Seq
     Data.Breadcrumbs.Deque
     Data.Breadcrumbs.Flips
+    Data.Breadcrumbs.Caterpillar
     Data.Breadcrumbs.Test
   build-depends:
     base >=4.9 && <4.10,

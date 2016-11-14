@@ -6,6 +6,7 @@ import qualified Data.Breadcrumbs.DropList as D
 import qualified Data.Breadcrumbs.Deque as Q
 import qualified Data.Breadcrumbs.Seq as S
 import qualified Data.Breadcrumbs.Flips as F
+import qualified Data.Breadcrumbs.Caterpillar as C
 import Data.Breadcrumbs.Test
 
 main = defaultMain
@@ -14,6 +15,7 @@ main = defaultMain
   , bench "Deque" $ seqbench Q.empty Q.push `whnf` Q.len
   , bench "Seq" $ seqbench S.empty S.push `whnf` S.len
   , bench "Flips" $ seqbench F.empty F.push `whnf` F.len
+  , bench "Caterpillar" $ seqbench C.empty C.push `whnf` C.len
   ]
 
 size = 10
