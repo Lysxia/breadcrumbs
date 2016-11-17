@@ -3,7 +3,7 @@ module Data.Breadcrumbs.Caterpillar where
 data Buffer a = Buffer !Int !Int [a] [a]
 
 empty :: Int -> Buffer a
-push :: a -> Buffer a
+push :: a -> Buffer a -> Buffer a
 bufferToList :: Buffer a -> [a]
 
 empty n = Buffer n n [] []
